@@ -1,17 +1,17 @@
-version: '3'
-services:
-  panta_front:
-    image: 195.214.235.213:8083/panta/panta-front:$VERSION
-    container_name: panta_front
-    ports:
-      - "4001:7777"
-      - "4000:3000"
-    env_file:
-      - $PROJECT_ENV_FILE
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "10"
+# version: '3'
+# services:
+#   panta_front:
+#     image: 195.214.235.213:8083/panta/panta-front:$VERSION
+#     container_name: panta_front
+#     ports:
+#       - "4001:7777"
+#       - "4000:3000"
+#     env_file:
+#       - $PROJECT_ENV_FILE
+#     logging:
+#       driver: "json-file"
+#       options:
+#         max-size: "10m"
+#         max-file: "10"
 
-    restart: always
+#     restart: always

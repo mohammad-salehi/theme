@@ -1,0 +1,50 @@
+name: Docker Image CI In Dev ENV
+
+on:
+  push:
+    branches: [ "development" ]
+
+jobs:
+  build:
+    runs-on: [self-hosted,sand]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker registry
+        uses: docker/login-action@v2
+        with:
+          registry: "${{ secrets.NEXUS_HOST }}"
+          username: "${{ secrets.NEXUS_USER }}"
+          password: "${{ secrets.NEXUS_PASS }}"
+
+      - name: Build Docker image
+        run: |
+          docker build -f Dockerfile-dev -t ${{ secrets.NEXUS_HOST }}/panta/panta-front:${{ github.sha }} --build-arg NODE_ENV=development . 
+
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.NEXUS_HOST }}/panta/panta-front:${{ github.sha }}
+ 
+
+  deploy_on_sand:
+    needs: build
+    runs-on: [ self-hosted,sand ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker registry
+        uses: docker/login-action@v2
+        with:
+          registry: "${{ secrets.NEXUS_HOST }}"
+          username: "${{ secrets.NEXUS_USER }}"
+          password: "${{ secrets.NEXUS_PASS }}"
+
+      - name: docker compose up
+        run: |
+          export VERSION=${{ github.sha }}
+          export PROJECT_ENV_FILE=.env.development
+          docker-compose -f docker-compose.yml down
+          docker-compose -f docker-compose.yml up -d

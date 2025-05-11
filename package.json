@@ -1,0 +1,49 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:dev": "NEXT_PUBLIC_ENV=development env-cmd -f .env.development next build",
+    "build:prod": "NEXT_PUBLIC_ENV=production env-cmd -f .env.production next build",
+    "start": "next start --port=7777",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@date-io/date-fns": "^3.2.1",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.11",
+    "@mui/lab": "^6.0.0-beta.30",
+    "@mui/material": "^6.4.11",
+    "@mui/x-date-pickers": "^8.0.0",
+    "@rsuite/charts": "^5.2.3",
+    "axios": "^1.8.2",
+    "bootstrap": "^5.3.3",
+    "file-saver": "^2.0.5",
+    "jalaali-js": "^1.2.8",
+    "js-cookie": "^3.0.5",
+    "moment-jalaali": "^0.10.4",
+    "next": "15.2.1",
+    "next-transpile-modules": "^10.0.1",
+    "notistack": "^3.0.2",
+    "primereact": "^10.9.2",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-feather": "^2.0.10",
+    "react-hot-toast": "^2.5.2",
+    "react-icons": "^5.5.0",
+    "react-select": "^5.10.1",
+    "reactstrap": "^9.2.3",
+    "recharts": "^2.15.1",
+    "rsuite": "^5.78.0",
+    "xlsx": "^0.18.5",
+    "zaman": "^2.1.1"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "eslint": "9.21.0",
+    "eslint-config-next": "15.2.1"
+  }
+}

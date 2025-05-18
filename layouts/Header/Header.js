@@ -247,7 +247,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
               style={{ fontSize: '17px' }}
               sx={{ display: { xs: "none", sm: "block" } }}
             >
-              سامانه نظارت بر کسب‌وکار های فرانیک
+              پاس
             </Typography>
           </LogoSection>
 

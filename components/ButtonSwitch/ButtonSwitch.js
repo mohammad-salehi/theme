@@ -10,12 +10,12 @@ const ButtonSwitch = ({IsLightMode, setIsLightMode}) => {
     useEffect(() => {
         setIsLightMode(IsLight)
     },[IsLight])
-
+'rgb(210,210,210)'
     return (
         <div className='container-fluid'>
             <Row className=' p-0' >
                 <Col className=' p-0 ps-1' xs="6">
-                    <button style={{ width: '100%', fontSize: '14px', background: IsLight ? lightHeader : 'rgb(210,210,210)', borderStyle: 'none', padding: '4px 12px', borderRadius: '4px', color: IsLight ? 'white' : 'black' }} onClick={() => { SetIsLight(true) }}>
+                    <button style={{ width: '100%', fontSize: '14px', background: IsLight ? lightHeader : '#555', borderStyle: 'none', padding: '8px 12px', borderRadius: '4px', color:'white' }} onClick={() => { SetIsLight(true) }}>
                         حالت روشن
                         {
                             IsLight ?
@@ -26,7 +26,7 @@ const ButtonSwitch = ({IsLightMode, setIsLightMode}) => {
                     </button>
                 </Col>
                 <Col className=' p-0 pe-1' xs="6">
-                    <button style={{ width: '100%', fontSize: '14px', background: !IsLight ? '#555' : 'rgb(210,210,210)', borderStyle: 'none', padding: '4px 12px', borderRadius: '4px', color: !IsLight ? 'white' : 'black' }} onClick={() => { SetIsLight(false) }}>
+                    <button style={{ width: '100%', fontSize: '14px', background: !IsLight ? 'rgb(210,210,210)' : 'rgb(210,210,210)', borderStyle: 'none', padding: '8px 12px', borderRadius: '4px', color:  'black' }} onClick={() => { SetIsLight(false) }}>
                         حالت تاریک
                         {
                             !IsLight ?

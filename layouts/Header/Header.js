@@ -236,18 +236,21 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
 
   return (
     <div>
-      <StyledAppBar position="static" style={{ height: '45px', background: IsLightMode ? lightHeader : darkHeader, boxShadow: 'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px' }}>
+      <StyledAppBar position="static" style={{ boxShadow: 'rgba(240, 241, 245, 0.2) 0px 1px 0px, rgba(255, 255, 255, 0.2) 0px 2px 0px inset', height: '45px', background: IsLightMode ? lightHeader : darkHeader }}>
         <StyledToolbar style={{ marginTop: '-10px' }}>
           <LogoSection sx={{ marginTop: { xs: "10px", sm: "0px" } }}>
-            <img src="/images/bahman_logo.png" style={{ width: "40px" }} />
+            <img src="/images/bahman_logo.png" style={{ width: "60px" }} />
 
             <Typography
               variant="h6"
               component="div"
               style={{ fontSize: '17px' }}
-              sx={{ display: { xs: "none", sm: "block" } }}
+              sx={{ display: { xs: "none", sm: "block", marginTop:'8px', color: IsLightMode? null : darkText2 } }}
             >
-              پاس
+              <span>
+                پاس،
+              </span>
+              <small style={{marginRight:'4px'}}>سرویس امنیت دارایی های دیجیتال</small>
             </Typography>
           </LogoSection>
 

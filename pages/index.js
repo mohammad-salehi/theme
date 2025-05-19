@@ -84,7 +84,7 @@ export default function Home() {
     <div id="main">
       <div id="loginBox" className="Glass">
         <h4 style={{ fontWeight: 'bold' }}>
-         سامانه نظارت بر کسب‌وکار فرانیک!
+         سرویس امنیت دارایی‌های دیجیتال!
         </h4>
         <form onSubmit={(e) => e.preventDefault()}>
           <Label className="mt-3">نام کاربری</Label>

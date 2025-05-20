@@ -248,7 +248,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
               sx={{ display: { xs: "none", sm: "block", marginTop:'8px', color: IsLightMode? null : darkText2 } }}
             >
               <span>
-                پاس،
+                بلاک‌بان، 
               </span>
               <small style={{marginRight:'4px'}}>سرویس امنیت دارایی های دیجیتال</small>
             </Typography>

@@ -10,11 +10,12 @@ import { networkData } from '../../functions/functions';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddNewAddress from '../AddNewAddress/AddNewAddress';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-
+import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
+import { Col, Row } from 'reactstrap';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 const AddressChart = ({ IsLightMode }) => {
 
     const [ShowData, SetShowData] = useState([
@@ -140,12 +141,19 @@ const AddressChart = ({ IsLightMode }) => {
     };
 
     return (
-        <div style={{ background: IsLightMode ? boxLightBackground0 : boxDarkBackground0, borderRadius: '8px' }}>
-            <AddNewAddress IsLightMode={IsLightMode} />
+        <div style={{ background: IsLightMode ? boxLightBackground0 : boxDarkBackground0, borderRadius: '8px', paddingBottom:'60px' }}>
+            <Row>
+                <Col xs="6" className='p-3 pe-4'>
+                    <h6 style={{fontWeight:'bold', color:IsLightMode? null : darkText3}}>لیست آدرس‌ها</h6>
+                </Col>
+                <Col xs="6" style={{textAlign:'left'}} className='p-2 ps-4'>
+                    <AddCircleOutlineOutlinedIcon style={{fontWeight:'bold', color:IsLightMode? null : darkText3, cursor:'pointer'}}/>
+                </Col>
+            </Row>
             <DataTable
                 value={ShowData}
                 onRowToggle={onRowToggle}
-                className='custom-data-table no-row-background TaskTabelTd mt-5'
+                className='custom-data-table no-row-background TaskTabelTd'
                 style={{
                     // رنگ متن ردیف‌ها
                     color: IsLightMode ? lightText3 : darkText3,

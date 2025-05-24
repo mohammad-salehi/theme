@@ -249,11 +249,12 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
     <div>
       <StyledAppBar position="static"
         style={{
-          boxShadow: 'rgba(240, 241, 245, 0.2) 0px 1px 0px, rgba(255, 255, 255, 0.2) 0px 2px 0px inset',
+          boxShadow: IsLightMode ? 'rgba(10, 10, 10, 0.2) 0px 1px 0px, rgba(10, 10, 10, 0.2) 0px 2px 0px inset' : 'rgba(240, 241, 245, 0.2) 0px 1px 0px, rgba(255, 255, 255, 0.2) 0px 2px 0px inset',
           height: '45px',
-          background: IsLightMode ? lightHeader : darkHeader,
+          background: IsLightMode ? lightHeader : darkHeader
         }}>
-        <StyledToolbar style={{ maxWidth: '1500px', width: '100%', margin: '-10px auto' }} >
+        <StyledToolbar style={{ maxWidth: '1500px', width: '100%', margin: '-10px auto',
+          padding:'0px' }} >
           <LogoSection sx={{ marginTop: { xs: "10px", sm: "0px" } }}>
             <img src="/images/bahman_logo.png" style={{ width: "40px" }} />
 
@@ -467,7 +468,6 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                   <SpaceDashboardIcon style={{ marginLeft: "4px" }} />
                   داشبورد
                 </MenuItem>
-
               </Menu>
             </NavSection>
 

@@ -93,14 +93,6 @@
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-input::placeholder {
-    color: rgb(190, 190, 190) !important;
-    /* تغییر رنگ به قرمز */
-    font-weight: 100 !important;
-    opacity: 1;
-    /* برخی مرورگرها مقدار opacity را کم می‌کنند */
-}
-
 /* table styles */
 
 .custom-data-table {
@@ -122,9 +114,6 @@ input::placeholder {
     padding-right: 20px !important;
 }
 
-.custom-data-table .p-datatable-tbody>tr.selected-row {
-    background: rgb(230, 230, 230) !important;
-}
 
 
 .custom-data-table .p-datatable-thead {
@@ -156,18 +145,28 @@ input::placeholder {
     padding: 8px;
     margin: 0px;
     margin-right: 24px;
+    color: 'red' !important;
 }
 
-.custom-data-table button.p-row-toggler:hover {
+body[data-theme="light"] .custom-data-table button.p-row-toggler:hover {
     background: rgb(230, 230, 230);
+}
 
+body[data-theme="dark"] .custom-data-table button.p-row-toggler:hover {
+    background: rgb(90, 90, 90);
 }
 
 /* table pagination */
 
-.paginator-table {
+body[data-theme="light"] .paginator-table {
     background: none !important;
     color: rgb(90, 90, 90);
+    position: relative !important;
+}
+
+body[data-theme="dark"] .paginator-table {
+    background: none !important;
+    color: rgb(200, 200, 200);
     position: relative !important;
 }
 
@@ -176,9 +175,12 @@ input::placeholder {
 
 }
 
-.paginator-table .p-paginator-page {
-    background: none !important;
+body[data-theme="light"] .paginator-table .p-paginator-page {
     color: rgb(90, 90, 90);
+}
+
+body[data-theme="dark"] .paginator-table .p-paginator-page {
+    color: rgb(200, 200, 200);
 }
 
 .paginator-table .p-paginator-current {
@@ -197,15 +199,24 @@ input::placeholder {
     box-shadow: none;
 }
 
-.paginator-table .p-highlight {
-    background: rgb(212, 212, 212) !important;
+body[data-theme="light"] .paginator-table .p-highlight {
+    background: rgb(220, 220, 220) !important;
     border-radius: 50%;
 }
 
-.paginator-table button:not(.p-highlight):hover {
+body[data-theme="dark"] .paginator-table .p-highlight {
+    background: rgb(90, 90, 90) !important;
+    border-radius: 50%;
+}
+
+body[data-theme="light"] .paginator-table button:not(.p-highlight):hover {
     background: rgb(240, 240, 240) !important;
     border-radius: 50%;
+}
 
+body[data-theme="dark"] .paginator-table button:not(.p-highlight):hover {
+    background: rgb(90, 90, 90) !important;
+    border-radius: 50%;
 }
 
 .paginator-table {
@@ -214,7 +225,7 @@ input::placeholder {
     float: right;
 }
 
-.paginator-table button {
+body[data-theme="light"] .paginator-table button {
     padding: 0px;
     width: 40px;
     height: 40px;
@@ -223,8 +234,21 @@ input::placeholder {
     transition: 0.1s;
 }
 
-.paginator-table button.p-disabled {
+body[data-theme="dark"] .paginator-table button {
+    padding: 0px;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    color: rgb(200, 200, 200);
+    transition: 0.1s;
+}
+
+body[data-theme="light"] .paginator-table button.p-disabled {
     color: rgb(160, 160, 160);
+}
+
+body[data-theme="dark"] .paginator-table button.p-disabled {
+    color: rgb(90, 90, 90);
 }
 
 .p-paginator-first {
@@ -245,7 +269,7 @@ input::placeholder {
 
 /* card */
 
-.card {
+body[data-theme="light"] .card {
     box-shadow: none;
     border-style: solid;
     border-width: 1px;
@@ -253,7 +277,19 @@ input::placeholder {
     border-radius: 8px;
     overflow: hidden;
     backdrop-filter: blur(12px);
-    background: linear-gradient(to bottom, rgba(255, 255, 255, .9) 0%, rgba(250, 250, 250, .7) 100%);
+    padding: 0px;
+    text-align: right
+}
+
+body[data-theme="dark"] .card {
+    box-shadow: none;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #1e2026;
+    border-radius: 8px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    background: #1e2026;
     padding: 0px;
     text-align: right
 }
@@ -265,7 +301,19 @@ input::placeholder {
 
 /* input */
 
-input {
+body[data-theme="light"] input::placeholder {
+    color: rgb(190, 190, 190) !important;
+    font-weight: 100 !important;
+    opacity: 1;
+}
+
+body[data-theme="dark"] input::placeholder {
+    color: rgb(120, 120, 120) !important;
+    font-weight: 100 !important;
+    opacity: 1;
+}
+
+body[data-theme="light"] input {
     display: block;
     width: 100%;
     height: 40px;
@@ -275,6 +323,19 @@ input {
     box-shadow: none;
     border-radius: 6px;
     color: rgb(75, 75, 75) !important;
+    padding-right: 8px;
+}
+
+body[data-theme="dark"] input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    border-color: rgb(223, 223, 223) !important;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: none;
+    border-radius: 6px;
+    color: rgb(200, 200, 200) !important;
     padding-right: 8px;
 }
 
@@ -505,7 +566,7 @@ input:focus {
     height: 40px !important;
 }
 
-.modakheleButton {
+body[data-theme="light"] .modakheleButton {
     border-style: none;
     background: rgb(230, 230, 230);
     border-radius: 6px;
@@ -516,14 +577,36 @@ input:focus {
     box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px, rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 2px 2px -1px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px, rgba(42, 51, 70, 0.03) 0px 10px 10px -5px, rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
 }
 
-.modakheleButton:hover {
+body[data-theme="light"] .modakheleButton:hover {
     background: rgb(220, 220, 220);
 }
 
-.MainDashboardInputGroup {
+body[data-theme="dark"] .modakheleButton {
+    border-style: none;
+    background: rgb(60, 60, 60);
+    border-radius: 6px;
+    transition: 0.2s;
+    padding: 8px 20px;
+    font-size: 16px;
+    color: rgb(200, 200, 200);
+    box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px, rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 2px 2px -1px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px, rgba(42, 51, 70, 0.03) 0px 10px 10px -5px, rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
+}
+
+body[data-theme="dark"] .modakheleButton:hover {
+    background: rgb(80, 80, 80);
+}
+
+body[data-theme="light"] .MainDashboardInputGroup {
     border-style: solid;
     border-width: 1px;
     border-color: rgb(193, 193, 193);
+    padding: 4px;
+    border-radius: 8px;
+}
+body[data-theme="dark"] .MainDashboardInputGroup {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(128, 128, 128);
     padding: 4px;
     border-radius: 8px;
 }
@@ -565,29 +648,74 @@ input:focus {
     margin-bottom: 4px;
 }
 
-.AccountManagementBotton {
+body[data-theme="light"] .AccountManagementBotton {
     transition: 0.1s;
     background: #868f97;
-    color: white
+    color: white;
 }
 
-.AccountManagementBotton:hover {
+body[data-theme="dark"] .AccountManagementBotton {
+    transition: 0.1s;
+    background: #4d5358;
+    color: white;
+}
+
+body[data-theme="light"] .AccountManagementBotton:hover {
     background: #4d5358;
 }
 
-.AccountManagementTable tbody tr {
-    background: red !important;
+body[data-theme="dark"] .AccountManagementBotton:hover {
+    background: #191b1b;
 }
 
-.custom-data-table.AccountTable .p-datatable-tbody>tr:hover {
+body[data-theme="light"] .custom-data-table.AccountTable .p-datatable-tbody>tr:hover {
     background-color: #f1f1f1 !important;
     cursor: pointer !important;
     transition: 0.1s;
 }
 
-.custom-data-table.AccountTable .p-datatable-tbody>tr.selected-row:hover {
+body[data-theme="dark"] .custom-data-table.AccountTable .p-datatable-tbody>tr:hover {
+    background-color: rgb(40, 40, 40) !important;
+    cursor: pointer !important;
+    transition: 0.1s;
+}
+
+body[data-theme="light"] .custom-data-table .p-datatable-tbody>tr.selected-row {
+    background: rgb(230, 230, 230) !important;
+}
+
+body[data-theme="light"] .custom-data-table.AccountTable .p-datatable-tbody>tr.selected-row:hover {
     background-color: rgb(230, 230, 230) !important;
     cursor: default;
+}
+
+body[data-theme="dark"] .custom-data-table .p-datatable-tbody>tr.selected-row {
+    background: rgb(60, 60, 60) !important;
+}
+
+body[data-theme="dark"] .custom-data-table.AccountTable .p-datatable-tbody>tr.selected-row:hover {
+    background: rgb(60, 60, 60) !important;
+    cursor: default;
+}
+
+body[data-theme="dark"] .AddAccountInput {
+    background: rgb(24, 26, 31);
+    border-color: rgb(129, 128, 128) !important;
+    border-style: solid;
+    border-width: 1px;
+    color: 'rgb(200)' !important
+}
+
+body[data-theme="dark"] #dateInputBox input {
+    background: rgb(24, 26, 31);
+    border-color: rgb(129, 128, 128) !important;
+    border-style: solid;
+    border-width: 1px;
+    color: 'rgb(200)' !important
+}
+
+#main input {
+    color: white !important;
 }
 
 body[data-theme="light"] .changeColorMenuOption{

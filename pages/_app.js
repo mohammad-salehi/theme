@@ -12,7 +12,7 @@ import { darkBackground0, lightBackground0, lightText1, darkText1 } from "../fun
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
-  const showHeader = router.pathname !== "/" && router.pathname !== "/recovery";
+
 
   // 1. حالت تم و یک فلگ برای hydration
   const [isLightMode, setIsLightMode] = useState(true);
@@ -55,12 +55,10 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/icon/favicon.ico" />
       </Head>
 
-      {showHeader && (
         <Header
           IsLightMode={isLightMode}
           setIsLightMode={setIsLightMode}
         />
-      )}
 
       <main style={{ flex: 1 }}>
         <Component {...pageProps} IsLightMode={isLightMode} />

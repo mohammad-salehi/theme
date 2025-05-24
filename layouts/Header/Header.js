@@ -31,7 +31,9 @@ import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import ButtonSwitch from "../../components/ButtonSwitch/ButtonSwitch";
 import { darkHeader, darkText1, darkText2, darkText3, darkText4, lightHeader, lightText1, lightText2, lightText3, darkBackground3 } from "../../functions/Colors";
 import { darkBackground2 } from "../../functions/Colors";
-
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import BedtimeIcon from '@mui/icons-material/Bedtime';
+import MenuIcon from '@mui/icons-material/Menu';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -89,6 +91,9 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [ProfileBox, setProfileBox] = useState(null);
   const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null);
+
+  const [ThemeBox, setThemeBox] = useState(null);
+
   const [Name, setName] = useState(true);
   const [ChangePassword, SetChangePassword] = useState(false);
   const [Loading, SetLoading] = useState(false);
@@ -96,6 +101,9 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
 
   const handleProfileBoxClick = (event) => {
     setProfileBox(event.currentTarget);
+  };
+  const handleThemeBoxClick = (event) => {
+    setThemeBox(event.currentTarget);
   };
   const handleMobileMenuClick = (event) => {
     setMobileMenuAnchor(event.currentTarget);
@@ -107,6 +115,9 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
   const handleProfileBoxClose = () => {
     setMobileMenuAnchor(null);
     setProfileBox(null);
+  };
+  const handleThemeBoxClose = () => {
+    setThemeBox(null);
   };
   useEffect(() => {
     setName(`${Cookies.get("name")} ${Cookies.get("lastname")}`);
@@ -236,18 +247,23 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
 
   return (
     <div>
-      <StyledAppBar position="static" style={{ height: '45px', background: IsLightMode ? lightHeader : darkHeader, boxShadow: 'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px' }}>
-        <StyledToolbar style={{ marginTop: '-10px' }}>
+      <StyledAppBar position="static"
+        style={{
+          boxShadow: 'rgba(240, 241, 245, 0.2) 0px 1px 0px, rgba(255, 255, 255, 0.2) 0px 2px 0px inset',
+          height: '45px',
+          background: IsLightMode ? lightHeader : darkHeader,
+        }}>
+        <StyledToolbar style={{ maxWidth: '1500px', width: '100%', margin: '-10px auto' }} >
           <LogoSection sx={{ marginTop: { xs: "10px", sm: "0px" } }}>
             <img src="/images/bahman_logo.png" style={{ width: "40px" }} />
 
             <Typography
               variant="h6"
               component="div"
-              style={{ fontSize: '17px' }}
+              style={{ fontSize: '17px', color: IsLightMode ? null : darkText3 }}
               sx={{ display: { xs: "none", sm: "block" } }}
             >
-              سامانه نظارت بر کسب‌وکار های فرانیک
+              نیک‌چین
             </Typography>
           </LogoSection>
 
@@ -350,9 +366,37 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                 aria-controls="category-menu2"
                 aria-haspopup="true"
                 style={{ background: "none", borderStyle: "none", marginTop: '-0px' }}
+                onClick={handleThemeBoxClick}
+              >
+                {
+                  IsLightMode ?
+                    <WbSunnyIcon style={{ fontSize: "24px", marginLeft: "-16px", color: IsLightMode ? null : darkText3 }} />
+                    :
+                    <BedtimeIcon style={{ fontSize: "24px", marginLeft: "-16px", color: IsLightMode ? null : darkText3 }} />
+                }
+              </StyledButton>
+              <Menu
+                id="category-menu2"
+                anchorEl={ThemeBox}
+                open={Boolean(ThemeBox)}
+                onClose={handleThemeBoxClose}
+                PaperProps={{
+                  sx: {
+                    backgroundColor: IsLightMode ? 'white' : darkBackground2
+                  },
+                }}
+              >
+                <ButtonSwitch setIsLightMode={setIsLightMode} IsLightMode={IsLightMode} />
+
+              </Menu>
+              <StyledButton
+                aria-controls="category-menu2"
+                aria-haspopup="true"
+                style={{ background: "none", borderStyle: "none", marginTop: '-0px' }}
                 onClick={handleProfileBoxClick}
               >
-                <PersonIcon style={{ fontSize: "32px", marginLeft: "-16px" }} />
+                <MenuIcon style={{ fontSize: "24px", marginLeft: "-16px", color: IsLightMode ? null : darkText3 }} />
+
               </StyledButton>
               <Menu
                 id="category-menu2"
@@ -361,116 +405,74 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                 onClose={handleProfileBoxClose}
                 PaperProps={{
                   sx: {
-                    backgroundColor: IsLightMode ? 'white' : darkBackground2
+                    backgroundColor: IsLightMode ? 'white' : darkBackground2,
+                    minWidth:'200px'
                   },
                 }}
               >
-                <div style={{ display: "inline-block" }}>
-                  <AccountCircleIcon
-                    style={{
-                      
-                      fontSize: "60px",
-                      color: IsLightMode ? lightText2 : darkText2,
-                      marginTop: "-40px",
-                      marginBottom: "-16px",
-                    }}
-                  />
-                </div>
-                <div style={{ display: "inline-block" }}>
-                  <p style={{ marginBottom: "-2px", color: IsLightMode ? lightText1 : darkText1 }} className="pe-3 ps-5">
-                    {Name}
-                  </p>
-                  <small
-                    style={{ marginTop: "-8px", color: "gray", color: IsLightMode ? lightText3 : darkText3 }}
-                    className="pe-3"
-                  >
-                    {RollName}
-                  </small>
-                </div>
-                <hr />
-                <div
-                  className="p-2"
-                  style={{ color: "rgb(80,80,80)", minWidth: '300px' }}
-                >
-                  <ButtonSwitch setIsLightMode={setIsLightMode} IsLightMode={IsLightMode} />
-                </div>
                 <MenuItem
-                  sx={{
-                    color: IsLightMode ? lightText3 : darkText3,
-                    // حالت هاور
-                    '&:hover': {
-                      background: IsLightMode ? '#f5f5f5' : darkBackground3,
-                      color: IsLightMode ? lightText1 : darkText1,
-                    },
-                  }}
                   onClick={() => {
                     window.location.assign('/panel')
                   }}
-                  style={{ color: IsLightMode ? lightText3 : darkText3 }}
+                  sx={{
+                    color: IsLightMode ? lightText3 : darkText3,
+                    marginLeft:"8px",
+                    marginRight:'8px',
+                    borderRadius:'4px',
+                    // حالت هاور
+                    '&:hover': {
+                      background: IsLightMode ? '#dadddf' : "#353838",
+                      color: IsLightMode ? lightText1 : darkText3,
+                    },
+                  }}
                 >
                   <SpaceDashboardIcon style={{ marginLeft: "4px" }} />
                   داشبورد
                 </MenuItem>
-                {
-                  Cookies.get('roll') === '2' ?
-                    <MenuItem
-                      sx={{
-                        color: IsLightMode ? lightText3 : darkText3,
-                        // حالت هاور
-                        '&:hover': {
-                          background: IsLightMode ? '#f5f5f5' : darkBackground3,
-                          color: IsLightMode ? lightText1 : darkText1,
-                        },
-                      }}
-                      onClick={() => {
-                        window.location.assign('/admin')
-                      }}
-                      style={{ color: IsLightMode ? lightText3 : darkText3 }}
-                    >
-                      <SupervisorAccountIcon style={{ marginLeft: "4px" }} />
-                      پنل ادمین
-                    </MenuItem>
-                    :
-                    null
-                }
+                <MenuItem
+                  onClick={() => {
+                    window.location.assign('/panel')
+                  }}
+                  sx={{
+                    color: IsLightMode ? lightText3 : darkText3,
+                    marginLeft:"8px",
+                    marginRight:'8px',
+                    borderRadius:'4px',
+                    // حالت هاور
+                    '&:hover': {
+                      background: IsLightMode ? '#dadddf' : "#353838",
+                      color: IsLightMode ? lightText1 : darkText3,
+                    },
+                  }}
+                >
+                  <SpaceDashboardIcon style={{ marginLeft: "4px" }} />
+                  داشبورد
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    window.location.assign('/panel')
+                  }}
+                  sx={{
+                    color: IsLightMode ? lightText3 : darkText3,
+                    marginLeft:"8px",
+                    marginRight:'8px',
+                    borderRadius:'4px',
+                    // حالت هاور
+                    '&:hover': {
+                      background: IsLightMode ? '#dadddf' : "#353838",
+                      color: IsLightMode ? lightText1 : darkText3,
+                    },
+                  }}
+                >
+                  <SpaceDashboardIcon style={{ marginLeft: "4px" }} />
+                  داشبورد
+                </MenuItem>
 
-                <MenuItem
-                  sx={{
-                    color: IsLightMode ? lightText3 : darkText3,
-                    // حالت هاور
-                    '&:hover': {
-                      background: IsLightMode ? '#f5f5f5' : darkBackground3,
-                      color: IsLightMode ? lightText1 : darkText1,
-                    },
-                  }}
-                  onClick={() => {
-                    handleProfileBoxClose(), SetChangePassword(true);
-                  }}
-                  style={{ color: IsLightMode ? lightText3 : darkText3 }}
-                >
-                  <LockIcon style={{ marginLeft: "4px" }} />
-                  تغییر رمز عبور
-                </MenuItem>
-                <MenuItem
-                  sx={{
-                    color: IsLightMode ? lightText3 : darkText3,
-                    // حالت هاور
-                    '&:hover': {
-                      background: IsLightMode ? '#f5f5f5' : darkBackground3,
-                      color: IsLightMode ? lightText1 : darkText1,
-                    },
-                  }}
-                  onClick={() => {
-                    handleProfileBoxClose(), Logout();
-                  }}
-                  style={{ color: IsLightMode ? lightText3 : darkText3 }}
-                >
-                  <LogoutIcon style={{ marginLeft: "4px" }} />
-                  خروج از حساب کاربری
-                </MenuItem>
               </Menu>
             </NavSection>
+
           )}
+
         </StyledToolbar>
       </StyledAppBar>
 

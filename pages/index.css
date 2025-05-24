@@ -589,3 +589,19 @@ input:focus {
     background-color: rgb(230, 230, 230) !important;
     cursor: default;
 }
+
+body[data-theme="light"] .changeColorMenuOption{
+    background: none;
+}
+
+body[data-theme="dark"] .changeColorMenuOption{
+    background: none;
+}
+
+body[data-theme="light"] .changeColorMenuOption:hover {
+    background: #dadddf;
+}
+
+body[data-theme="dark"] .changeColorMenuOption:hover {
+    background: #353838;
+}

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Row, Col } from 'reactstrap'
-import { lightHeader } from '../../functions/Colors'
+import { darkText3, lightHeader } from '../../functions/Colors'
 import DoneIcon from '@mui/icons-material/Done';
+
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import BedtimeIcon from '@mui/icons-material/Bedtime';
 
 const ButtonSwitch = ({IsLightMode, setIsLightMode}) => {
 
@@ -12,28 +15,18 @@ const ButtonSwitch = ({IsLightMode, setIsLightMode}) => {
     },[IsLight])
 
     return (
-        <div className='container-fluid'>
+        <div className='container-fluid' style={{maxWidth:'200px'}}>
             <Row className=' p-0' >
-                <Col className=' p-0 ps-1' xs="6">
-                    <button style={{ width: '100%', fontSize: '14px', background: IsLight ? lightHeader : 'rgb(210,210,210)', borderStyle: 'none', padding: '4px 12px', borderRadius: '4px', color: IsLight ? 'white' : 'black' }} onClick={() => { SetIsLight(true) }}>
+                <Col className='p-0 ps-2 pe-2 m-0' xs="12">
+                    <button className='changeColorMenuOption m-0' style={{ width: '100%', textAlign:'right', fontSize: '14px', borderStyle: 'none', padding: '8px 12px', borderRadius: '4px', color: IsLight ? '#0784c3' : IsLightMode ? null : darkText3 }} onClick={() => { SetIsLight(true) }}>
+                        <WbSunnyIcon style={{fontSize:'15px', marginLeft:'4px'}}/>
                         حالت روشن
-                        {
-                            IsLight ?
-                                <DoneIcon style={{ fontSize: '18px', fontWeight: 'bold', marginRight:'4px' }} />
-                                :
-                                null
-                        }
                     </button>
                 </Col>
-                <Col className=' p-0 pe-1' xs="6">
-                    <button style={{ width: '100%', fontSize: '14px', background: !IsLight ? '#555' : 'rgb(210,210,210)', borderStyle: 'none', padding: '4px 12px', borderRadius: '4px', color: !IsLight ? 'white' : 'black' }} onClick={() => { SetIsLight(false) }}>
+                <Col className='p-0  ps-2 pe-2 m-0' xs="12">
+                    <button className='changeColorMenuOption m-0' style={{ width: '100%', textAlign:'right', fontSize: '14px', borderStyle: 'none', padding: '8px 12px', borderRadius: '4px', color: !IsLight ? '#0784c3' : 'black' }} onClick={() => { SetIsLight(false) }}>
+                        <BedtimeIcon style={{fontSize:'15px', marginLeft:'4px'}}/>
                         حالت تاریک
-                        {
-                            !IsLight ?
-                                <DoneIcon style={{ fontSize: '18px', fontWeight: 'bold', marginRight:'4px' }} />
-                                :
-                                null
-                        }
                     </button>
                 </Col>
             </Row>

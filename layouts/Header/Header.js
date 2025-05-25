@@ -256,7 +256,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
         <StyledToolbar style={{ maxWidth: '1500px', width: '100%', margin: '-10px auto',
           padding:'0px' }} >
           <LogoSection sx={{ marginTop: { xs: "10px", sm: "0px" } }}>
-            <img src="/images/bahman_logo.png" style={{ width: "40px" }} />
+            <img src="/images/bahman_logo.png" style={{ width: "40px", marginRight:'4px' }} />
 
             <Typography
               variant="h6"
@@ -264,7 +264,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
               style={{ fontSize: '17px', color: IsLightMode ? null : darkText3 }}
               sx={{ display: { xs: "none", sm: "block" } }}
             >
-              نیک‌چین
+              Nickchain
             </Typography>
           </LogoSection>
 
@@ -302,7 +302,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                     },
                   }}
                 >
-                  <SpaceDashboardIcon style={{ marginLeft: "4px" }} />
+                  <SpaceDashboardIcon style={{ marginRight: "4px" }} />
                   داشبورد
                 </MenuItem>
                 {
@@ -320,7 +320,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                         },
                       }}
                     >
-                      <SupervisorAccountIcon style={{ marginLeft: "4px" }} />
+                      <SupervisorAccountIcon style={{ marginRight: "4px" }} />
                       پنل ادمین
                     </MenuItem>
                     :
@@ -340,7 +340,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                     },
                   }}
                 >
-                  <LockIcon style={{ marginLeft: "4px" }} />
+                  <LockIcon style={{ marginRight: "4px" }} />
                   تغییر رمز عبور
                 </MenuItem>
                 <MenuItem
@@ -356,7 +356,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                     },
                   }}
                 >
-                  <LogoutIcon style={{ marginLeft: "4px" }} />
+                  <LogoutIcon style={{ marginRight: "4px" }} />
                   خروج از حساب کاربری
                 </MenuItem>
               </Menu>
@@ -371,9 +371,9 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
               >
                 {
                   IsLightMode ?
-                    <WbSunnyIcon style={{ fontSize: "24px", marginLeft: "-16px", color: IsLightMode ? null : darkText3 }} />
+                    <WbSunnyIcon style={{ fontSize: "24px", marginRight: "-16px", color: IsLightMode ? null : darkText3 }} />
                     :
-                    <BedtimeIcon style={{ fontSize: "24px", marginLeft: "-16px", color: IsLightMode ? null : darkText3 }} />
+                    <BedtimeIcon style={{ fontSize: "24px", marginRight: "-16px", color: IsLightMode ? null : darkText3 }} />
                 }
               </StyledButton>
               <Menu
@@ -396,7 +396,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                 style={{ background: "none", borderStyle: "none", marginTop: '-0px' }}
                 onClick={handleProfileBoxClick}
               >
-                <MenuIcon style={{ fontSize: "24px", marginLeft: "-16px", color: IsLightMode ? null : darkText3 }} />
+                <MenuIcon style={{ fontSize: "24px", marginRight: "0px", color: IsLightMode ? null : darkText3 }} />
 
               </StyledButton>
               <Menu
@@ -417,7 +417,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                   }}
                   sx={{
                     color: IsLightMode ? lightText3 : darkText3,
-                    marginLeft:"8px",
+                    marginRight:"8px",
                     marginRight:'8px',
                     borderRadius:'4px',
                     // حالت هاور
@@ -427,8 +427,8 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                     },
                   }}
                 >
-                  <SpaceDashboardIcon style={{ marginLeft: "4px" }} />
-                  داشبورد
+                  <SpaceDashboardIcon style={{ marginRight: "4px" }} />
+                  dashboard
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
@@ -436,7 +436,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                   }}
                   sx={{
                     color: IsLightMode ? lightText3 : darkText3,
-                    marginLeft:"8px",
+                    marginRight:"8px",
                     marginRight:'8px',
                     borderRadius:'4px',
                     // حالت هاور
@@ -446,8 +446,8 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                     },
                   }}
                 >
-                  <SpaceDashboardIcon style={{ marginLeft: "4px" }} />
-                  داشبورد
+                  <SpaceDashboardIcon style={{ marginRight: "4px" }} />
+                  dashboard
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
@@ -455,7 +455,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                   }}
                   sx={{
                     color: IsLightMode ? lightText3 : darkText3,
-                    marginLeft:"8px",
+                    marginRight:"8px",
                     marginRight:'8px',
                     borderRadius:'4px',
                     // حالت هاور
@@ -465,8 +465,8 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
                     },
                   }}
                 >
-                  <SpaceDashboardIcon style={{ marginLeft: "4px" }} />
-                  داشبورد
+                  <SpaceDashboardIcon style={{ marginRight: "4px" }} />
+                  dashboard
                 </MenuItem>
               </Menu>
             </NavSection>

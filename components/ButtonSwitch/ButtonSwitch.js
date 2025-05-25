@@ -15,18 +15,18 @@ const ButtonSwitch = ({IsLightMode, setIsLightMode}) => {
     },[IsLight])
 
     return (
-        <div className='container-fluid' style={{maxWidth:'200px'}}>
+        <div className='container-fluid' style={{maxWidth:'200px', textAlign:'left', direction:'ltr'}}>
             <Row className=' p-0' >
                 <Col className='p-0 ps-2 pe-2 m-0' xs="12">
-                    <button className='changeColorMenuOption m-0' style={{ width: '100%', textAlign:'right', fontSize: '14px', borderStyle: 'none', padding: '8px 12px', borderRadius: '4px', color: IsLight ? '#0784c3' : IsLightMode ? null : darkText3 }} onClick={() => { SetIsLight(true) }}>
-                        <WbSunnyIcon style={{fontSize:'15px', marginLeft:'4px'}}/>
-                        حالت روشن
+                    <button className='changeColorMenuOption m-0' style={{ width: '100%', textAlign:'left', fontSize: '14px', borderStyle: 'none', padding: '8px 12px', borderRadius: '4px', color: IsLight ? '#0784c3' : IsLightMode ? null : darkText3 }} onClick={() => { SetIsLight(true) }}>
+                        <WbSunnyIcon style={{fontSize:'15px', marginRight:'4px'}}/>
+                        Light Mode
                     </button>
                 </Col>
                 <Col className='p-0  ps-2 pe-2 m-0' xs="12">
-                    <button className='changeColorMenuOption m-0' style={{ width: '100%', textAlign:'right', fontSize: '14px', borderStyle: 'none', padding: '8px 12px', borderRadius: '4px', color: !IsLight ? '#0784c3' : 'black' }} onClick={() => { SetIsLight(false) }}>
-                        <BedtimeIcon style={{fontSize:'15px', marginLeft:'4px'}}/>
-                        حالت تاریک
+                    <button className='changeColorMenuOption m-0' style={{ width: '100%', textAlign:'left', fontSize: '14px', borderStyle: 'none', padding: '8px 12px', borderRadius: '4px', color: !IsLight ? '#0784c3' : 'black' }} onClick={() => { SetIsLight(false) }}>
+                        <BedtimeIcon style={{fontSize:'15px', marginRight:'4px'}}/>
+                        Dark Mode
                     </button>
                 </Col>
             </Row>

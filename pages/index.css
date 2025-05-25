@@ -5,6 +5,7 @@
 
 * {
     font-family: sans !important;
+    direction: ltr;
 }
 
 .Glass {
@@ -732,4 +733,19 @@ body[data-theme="light"] .changeColorMenuOption:hover {
 
 body[data-theme="dark"] .changeColorMenuOption:hover {
     background: #353838;
+}
+
+.LatestBlockTable thead {
+    display: none !important;
+}
+
+#topMainBox{
+    margin-top: 75px;
+}
+
+@media only screen and (max-width:768px) {
+    #topMainBox{
+        margin-top: 0px;
+    }
+    
 }

@@ -36,61 +36,62 @@ const TitleBox = ({ IsLightMode }) => {
         <div className='mt-4' style={{
             color: IsLightMode ? 'white' : darkText3
         }}>
-            <h6 style={{ fontWeight: 'bold' }}>
-                کاوشگر شبکه نیک‌چین
+            <h6 style={{ fontSize: '24px' }}>
+                Nickchain explorer
             </h6>
-            <form onSubmit={()=>{}}>
+            <form onSubmit={() => { }}>
 
-            <InputGroup
-                id="MainDashboardInputGroup"
-                className="input-group-merge mb-2 MainDashboardInputGroup"
-                style={{ direction: "rtl", width: "100%", background: IsLightMode ? 'white' : boxDarkBackground0 }}
-            >
-                
-                <input
-                    type="text"
-                    style={{ display: "none" }}
-                    autocomplete="off"
-                />
-                <Input
-                    autoComplete="false"
-                    name="volume"
-                    style={{
-                        textAlign: "right",
-                        direction: "ltr",
-                        background: "none",
-                    }}
-                    id="MainDashboardInputBox"
-                    placeholder="جست‌وجو براساس آدرس / تراکنش / شماره بلاک"
-                    type="text"
-                />
-                <InputGroupText
-                    id="PriceInputGroup"
-                    style={{
-                        background: "none",
-                        padding: "0px",
-                        marginLeft: "4px",
-                    }}
+                <InputGroup
+                    id="MainDashboardInputGroup"
+                    className="input-group-merge mb-2 MainDashboardInputGroup"
+                    style={{ direction: "rtl", width: "100%", background: IsLightMode ? 'white' : boxDarkBackground0 }}
                 >
-                    <div>
-                        <SearchIcon
-                            size={23}
-                            style={{
-                                display: "block",
-                                borderStyle: "none",
-                                cursor: "pointer",
-                                color: 'white',
-                                borderRadius: "8px",
-                                padding: "4px",
-                                width: '36px',
-                                height: '36px',
-                                background: '#0784c3'
-                            }}
-                        />
-                    </div>
-                </InputGroupText>
-            </InputGroup>
-            <small style={{color:darkText3}}>آدرس یا تراکنش‌های خود را به کمک کاوشگر نیک‌چین جست‌وجو کنید!</small>
+
+                    <input
+                        type="text"
+                        style={{ display: "none" }}
+                        autocomplete="off"
+                    />
+                    <InputGroupText
+                        id="PriceInputGroup"
+                        style={{
+                            background: "none",
+                            padding: "0px",
+                            marginRight: "4px",
+                        }}
+                    >
+                        <div>
+                            <SearchIcon
+                                size={23}
+                                style={{
+                                    display: "block",
+                                    borderStyle: "none",
+                                    cursor: "pointer",
+                                    color: 'white',
+                                    borderRadius: "8px",
+                                    padding: "4px",
+                                    width: '36px',
+                                    height: '36px',
+                                    background: '#0784c3'
+                                }}
+                            />
+                        </div>
+                    </InputGroupText>
+                    <Input
+                        autoComplete="false"
+                        name="volume"
+                        style={{
+                            textAlign: "left",
+                            direction: "ltr",
+                            background: "none",
+                        }}
+                        id="MainDashboardInputBox"
+                        placeholder="search by address / transaction / block number"
+                        type="text"
+                    />
+
+                </InputGroup>
+                <small style={{ color: darkText3 }}>Search your address or transactions with Nikchain explorer!</small>
             </form>
 
         </div>

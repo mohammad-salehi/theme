@@ -15,16 +15,15 @@ const SummaryBox = ({ IsLightMode }) => {
             padding: '16px',
             borderRadius: '12px',
             marginTop: '-60px',
-            opacity: '1'
+            opacity: '1',
+            direction:'ltr'
         }}>
-            <Row className='p-0 m-0'>
+            <Row className='p-1 m-0'>
+
                 <Col
-
-
-                    className='p-2 m-0' lg="4" md="6" xs="12">
+                    className='p-0 m-0' lg="4" md="6" xs="12">
                     <Row className='p-0 m-0'>
                         <Col
-
                             className='p-2 m-0' xs="2">
                             <LocalOfferIcon style={{
                                 fontSize: '36px',
@@ -32,13 +31,12 @@ const SummaryBox = ({ IsLightMode }) => {
                             }} />
                         </Col>
                         <Col
-
                             className='p-2 m-0' xs="10">
                             <Row className='p-0 m-0'>
                                 <small className='m-0 p-0' style={{
                                     color: IsLightMode ? 'gray' : darkText3
                                 }}>
-                                    قیمت
+                                    Price
                                 </small>
                             </Row>
                             <Row className='p-0 m-0'>
@@ -52,10 +50,7 @@ const SummaryBox = ({ IsLightMode }) => {
                 </Col>
 
                 <Col
-
-
-
-                    className='p-2 m-0' lg="4" md="6" xs="12">
+                    className='p-0 m-0' lg="4" md="6" xs="12">
                     <Row className='p-0 m-0'>
                         <Col
                             className='p-2 m-0' xs="2">
@@ -70,7 +65,7 @@ const SummaryBox = ({ IsLightMode }) => {
                                 <small className='m-0 p-0' style={{
                                     color: IsLightMode ? 'gray' : darkText3
                                 }}>
-                                    تراکنش‌ها
+                                    Transactions
                                 </small>
                             </Row>
                             <Row className='p-0 m-0'>
@@ -83,9 +78,7 @@ const SummaryBox = ({ IsLightMode }) => {
                 </Col>
 
                 <Col
-
-
-                    className='p-2 m-0' lg="4" md="6" xs="12">
+                    className='p-0 m-0' lg="4" md="6" xs="12">
                     <Row className='p-0 m-0'>
                         <Col className='p-2 m-0' xs="2">
                             <PaymentIcon style={{
@@ -98,7 +91,7 @@ const SummaryBox = ({ IsLightMode }) => {
                                 <small className='m-0 p-0' style={{
                                     color: IsLightMode ? 'gray' : darkText3
                                 }}>
-                                    کارمزد شبکه
+                                    Network fee
                                 </small>
                             </Row>
                             <Row className='p-0 m-0'>
@@ -111,8 +104,7 @@ const SummaryBox = ({ IsLightMode }) => {
                 </Col>
 
                 <Col
-
-                    className='p-2 m-0' lg="4" md="6" xs="12">
+                    className='p-0 m-0' lg="4" md="6" xs="12">
                     <Row className='p-0 m-0'>
                         <Col
                             className='p-2 m-0' xs="2">
@@ -127,7 +119,7 @@ const SummaryBox = ({ IsLightMode }) => {
                                 <small className='m-0 p-0' style={{
                                     color: IsLightMode ? 'gray' : darkText3
                                 }}>
-                                    مارکت کپ
+                                    Market cap
                                 </small>
                             </Row>
                             <Row className='p-0 m-0'>
@@ -142,9 +134,7 @@ const SummaryBox = ({ IsLightMode }) => {
 
 
                 <Col
-
-
-                    className='p-2 m-0' lg="4" md="6" xs="12">
+                    className='p-0 m-0' lg="4" md="6" xs="12">
                     <Row className='p-0 m-0'>
                         <Col className='p-2 m-0' xs="2">
                             <ViewAgendaIcon style={{
@@ -157,7 +147,7 @@ const SummaryBox = ({ IsLightMode }) => {
                                 <small className='m-0 p-0' style={{
                                     color: IsLightMode ? 'gray' : darkText3
                                 }}>
-                                    آخرین بلاک
+                                    Last Finilized Block
                                 </small>
                             </Row>
                             <Row className='p-0 m-0'>
@@ -170,7 +160,7 @@ const SummaryBox = ({ IsLightMode }) => {
                 </Col>
 
                 <Col
-                    className='p-2 m-0' lg="4" md="6" xs="12">
+                    className='p-0 m-0' lg="4" md="6" xs="12">
                     <Row className='p-0 m-0'>
                         <Col className='p-2 m-0' xs="2">
                             <ViewDayIcon style={{
@@ -183,7 +173,7 @@ const SummaryBox = ({ IsLightMode }) => {
                                 <small className='m-0 p-0' style={{
                                     color: IsLightMode ? 'gray' : darkText3
                                 }}>
-                                    آخرین بلاک ایمن
+                                    Last Safe Block
                                 </small>
                             </Row>
                             <Row className='p-0 m-0'>
@@ -194,6 +184,7 @@ const SummaryBox = ({ IsLightMode }) => {
                         </Col>
                     </Row>
                 </Col>
+                
             </Row>
         </div>
     )

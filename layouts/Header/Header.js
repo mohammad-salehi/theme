@@ -256,7 +256,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
         <StyledToolbar style={{ maxWidth: '1500px', width: '100%', margin: '-10px auto',
           padding:'0px' }} >
           <LogoSection sx={{ marginTop: { xs: "10px", sm: "0px" } }}>
-            <img src="/images/bahman_logo.png" style={{ width: "40px", marginRight:'4px' }} />
+            <img src="/images/bahman_logo.png" style={{ width: "40px", marginLeft:'4px' }} />
 
             <Typography
               variant="h6"

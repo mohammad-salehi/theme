@@ -7,6 +7,8 @@ import { darkGreenBackground0, darkRedBackground1, darkRed0, darkGreen0, boxDark
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import InternalTransactions from '../../layouts/Main/Transactions/InternalTransactions/InternalTransactions';
 import TokenTransfers from '../../layouts/Main/Transactions/TokenTransfers/TokenTransfers';
+import CopyrightIcon from '@mui/icons-material/Copyright';
+
 const Transaction = ({ IsLightMode }) => {
 
     const router = useRouter();
@@ -39,8 +41,8 @@ const Transaction = ({ IsLightMode }) => {
                     padding: '2px 16px',
                     borderRadius: '4px',
                     fontSize: '14px', marginBottom: '-6px',
-                    borderStyle:'solid',
-                    borderWidth:'1px',
+                    borderStyle: 'solid',
+                    borderWidth: '1px',
                     borderColor: IsLightMode ? 'rgb(173,1,1)' : darkRed0
                 }}>
                     unsuccess
@@ -54,8 +56,8 @@ const Transaction = ({ IsLightMode }) => {
                     padding: '2px 16px',
                     borderRadius: '4px',
                     fontSize: '14px', marginBottom: '-6px',
-                    borderStyle:'solid',
-                    borderWidth:'1px',
+                    borderStyle: 'solid',
+                    borderWidth: '1px',
                     borderColor: IsLightMode ? 'rgb(27,96,33)' : darkGreen0,
                 }}>
                     success
@@ -201,7 +203,7 @@ const Transaction = ({ IsLightMode }) => {
                     </Col>
 
                     <Col md="10" className='p-2 ps-4 pe-3'>
-                        <InternalTransactions/>
+                        <InternalTransactions />
                     </Col>
                 </Row>
                 <hr />
@@ -214,7 +216,7 @@ const Transaction = ({ IsLightMode }) => {
                     </Col>
 
                     <Col md="10" className='p-2 ps-4 pe-3'>
-                        <TokenTransfers/>
+                        <TokenTransfers />
                     </Col>
                 </Row>
                 <hr />
@@ -262,6 +264,8 @@ const Transaction = ({ IsLightMode }) => {
                     </Col>
                 </Row>
             </div>
+      <p style={{ textAlign: 'center', marginBottom: '-8px', marginTop: '4px', color: 'gray', fontSize: '13px' }}>Developed by <a href='https://faranic.ir/' style={{ color: 'inherit', textDecoration: 'none' }}>Panta</a> <CopyrightIcon style={{ fontSize: '16px' }} /></p>
+            
         </div>
     )
 }

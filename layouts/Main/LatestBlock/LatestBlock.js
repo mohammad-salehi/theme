@@ -58,7 +58,7 @@ const LatestBlock = ({ IsLightMode }) => {
                     </Col>
 
                     <Col >
-                        <a href='/' style={{
+                        <a href='/block/123' style={{
                             textDecoration: 'none',
                             color: '#0784c3',
                             display: 'block',

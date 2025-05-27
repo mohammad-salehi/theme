@@ -37,8 +37,7 @@ const LatestTransaction = ({ IsLightMode }) => {
       
         const years = Math.floor(months / 12);
         return years + ' years ago';
-      }
-      
+    }
 
     const blockNumber = (row) => {
         return (
@@ -56,7 +55,7 @@ const LatestTransaction = ({ IsLightMode }) => {
                     </Col>
 
                     <Col>
-                        <a href='/' style={{
+                        <a href={`/transaction/sadf`} style={{
                             textDecoration: 'none',
                             color: '#0784c3',
                             display: 'block',
@@ -124,7 +123,6 @@ const LatestTransaction = ({ IsLightMode }) => {
             </div>
         )
     }
-
 
     return (
         <div

@@ -264,7 +264,9 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
               style={{ fontSize: '17px', color: IsLightMode ? null : darkText3 }}
               sx={{ display: { xs: "none", sm: "block" } }}
             >
-              Nickchain
+              <a href="/" style={{textDecoration:'none', color:'inherit'}}>
+                Nickchain
+              </a>
             </Typography>
           </LogoSection>
 

@@ -79,7 +79,7 @@ const LatestTransaction = ({ IsLightMode }) => {
                             fontSize:'14px'
                         }} className='m-0 p-0' >
                             From
-                            <a href='/' style={{
+                            <a href='/address/asdf' style={{
                                 textDecoration: 'none',
                                 color: '#0784c3',
                                 marginLeft: '4px'
@@ -91,7 +91,7 @@ const LatestTransaction = ({ IsLightMode }) => {
                             fontSize:'14px'
                         }} className='m-0 p-0'>
                             To
-                            <a href='/' style={{
+                            <a href='/address/asdf' style={{
                                 textDecoration: 'none',
                                 color: '#0784c3',
                                 marginLeft: '4px'

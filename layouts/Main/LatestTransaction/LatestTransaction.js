@@ -50,7 +50,7 @@ const LatestTransaction = ({ IsLightMode }) => {
                             padding: '8px',
                             borderRadius: '8px',
                         }}>
-                            <svg fill={IsLightMode ? 'rgb(40,40,40)' : 'rgb(200,200,200)'} width="28px" height="28px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 3v18h22V3zm1 1h20v16H2zm17 6H5V9h14zm-6 4H5v-1h8z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                            <svg fill={IsLightMode ? 'gray' : 'rgb(200,200,200)'} width="28px" height="28px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 3v18h22V3zm1 1h20v16H2zm17 6H5V9h14zm-6 4H5v-1h8z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         </div>
                     </Col>
 

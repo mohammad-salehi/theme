@@ -6,7 +6,7 @@ export default function LoadingComponent() {
     <div style={{textAlign:'center'}} className='mt-5 mb-5'>
       <CircularProgress />
       <p>
-          درحال دریافت اطلاعات...
+        Downloading Data!
       </p>
     </div>
   );

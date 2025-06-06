@@ -46,7 +46,7 @@ const NoDataComponent = () => {
                 26 -50 27 -289 7z"/>
         </g>
     </svg>
-    <p style={{ color: '#aaa' }}>اطلاعاتی وجود ندارد</p>
+    <p style={{ color: '#aaa' }}>no data founded!</p>
 </div>
   )
 }

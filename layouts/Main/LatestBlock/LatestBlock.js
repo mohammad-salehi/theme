@@ -1,47 +1,51 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   boxDarkBackground0,
   darkText3,
   lightText3,
 } from "../../../functions/Colors";
-
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import NoDataComponent from "../../../components/NoDataComponent/NoDataComponent";
 import { Col, Row } from "reactstrap";
-import WestIcon from "@mui/icons-material/West";
 import EastIcon from "@mui/icons-material/East";
-
 import Web3 from "web3";
+import { serverAddress } from "../../../functions/ServerAddress";
+import LoadingComponent from "../../../components/LoadingComponent/LoadingComponent";
 
 const LatestBlock = ({ IsLightMode }) => {
-  const rpcUrl = "https://eth.meowrpc.com"
-  const web3 = new Web3(rpcUrl)
+  const rpcUrl = serverAddress;
+  const web3 = new Web3(rpcUrl);
 
   const [blocks, setBlocks] = useState([]);
+  const [FirstLoading, setFirstLoading] = useState(false);
 
   const getLatestBlocks = async () => {
     try {
       const latestBlockNumber = await web3.eth.getBlockNumber();
       const blocks = [];
-      
+
       // تابع کمکی برای محاسبه زمان استخراج
       const getMiningDuration = async (blockNumber) => {
         if (blockNumber === 0) return 0; // برای بلاک جنسیس
         const currentBlock = await web3.eth.getBlock(blockNumber.toString());
-        const previousBlock = await web3.eth.getBlock((Number(blockNumber) - 1).toString());
+        const previousBlock = await web3.eth.getBlock(
+          (Number(blockNumber) - 1).toString()
+        );
         return Number(currentBlock.timestamp) - Number(previousBlock.timestamp);
       };
-  
+
       for (let i = 0; i < 6; i++) {
         const blockNumber = BigInt(latestBlockNumber) - BigInt(i);
         const block = await web3.eth.getBlock(blockNumber.toString());
-        const blockMiningDuration = await getMiningDuration(Number(block.number));
-  
+        const blockMiningDuration = await getMiningDuration(
+          Number(block.number)
+        );
+
         const gasUsed = block.gasUsed;
         const gasPrice = block.baseFeePerGas;
         const blockFee = Number(gasUsed) * Number(gasPrice) * 1e-18;
-  
+
         blocks.push({
           blockNumber: Number(block.number),
           blockHash: block.hash,
@@ -49,22 +53,28 @@ const LatestBlock = ({ IsLightMode }) => {
           blockTimestamp: Number(block.timestamp),
           blockMiningDuration, // مدت زمان استخراج به ثانیه
           blockFee,
-          blockTransactionsCount: block.transactions.length
+          blockTransactionsCount: block.transactions.length,
         });
       }
-  
+
       setBlocks(blocks);
-      console.log("بلوک های دریافت شده:", blocks);
+      setFirstLoading(true)
     } catch (error) {
-      console.error("خطا در دریافت بلاک‌ها:", error);
+      console.error( error);
     }
   };
 
-
   useEffect(() => {
     getLatestBlocks();
-  },[])
-
+  }, []);
+  function formatString(str) {
+    if (str.length <= 10) {
+      return str; // اگر طول رشته کمتر یا مساوی ۱۰ باشد، نیازی به تغییر نیست
+    }
+    const firstFive = str.substring(0, 6);
+    const lastFive = str.substring(str.length - 6);
+    return `${firstFive}...${lastFive}`;
+  }
   function timeSince(timestamp) {
     const now = Date.now();
 
@@ -133,7 +143,7 @@ const LatestBlock = ({ IsLightMode }) => {
                 fontSize: "14px",
               }}
             >
-              {(row.blockNumber).toLocaleString()}
+              {row.blockNumber.toLocaleString()}
             </a>
             <small className="m-0 p-0">{timeSince(row.blockTimestamp)}</small>
           </Col>
@@ -141,16 +151,6 @@ const LatestBlock = ({ IsLightMode }) => {
       </div>
     );
   };
-
-  function formatString(str) {
-    if (str.length <= 10) {
-      return str; // اگر طول رشته کمتر یا مساوی ۱۰ باشد، نیازی به تغییر نیست
-    }
-    const firstFive = str.substring(0, 6);
-    const lastFive = str.substring(str.length - 6);
-    return `${firstFive}...${lastFive}`;
-  }
-  
   const Miner = (row) => {
     return (
       <div className="container-fluid" style={{ textAlign: "left" }}>
@@ -176,7 +176,8 @@ const LatestBlock = ({ IsLightMode }) => {
             </p>
             <p className="m-0 p-0">
               <small>
-                {row.blockTransactionsCount} txns in {row.blockMiningDuration} secs
+                {row.blockTransactionsCount} txns in {row.blockMiningDuration}{" "}
+                secs
               </small>
             </p>
           </Col>
@@ -184,7 +185,6 @@ const LatestBlock = ({ IsLightMode }) => {
       </div>
     );
   };
-
   const Reward = (row) => {
     return (
       <div
@@ -233,50 +233,52 @@ const LatestBlock = ({ IsLightMode }) => {
           paddingTop: "0px",
         }}
       >
-        <DataTable
-          value={blocks}
-          className="custom-data-table no-row-background TaskTabelTd LatestBlockTable"
-          style={{
-            // رنگ متن ردیف‌ها
-            color: IsLightMode ? lightText3 : darkText3,
-            // حاشیه دور جدول
-            border: `1px none ${IsLightMode ? "#ddd" : "#444"}`,
-          }}
-          tableStyle={{
-            minWidth: "35rem",
-            // اگر دوست داری داخل <table> هم ست کن
-            borderCollapse: "collapse",
-          }}
-          emptyMessage={<NoDataComponent />}
-          showHeader={false}
-        >
-          <Column
-            bodyStyle={{
-              textAlign: "right",
+        {!FirstLoading ? (
+          <LoadingComponent />
+        ) : (
+          <DataTable
+            value={blocks}
+            className="custom-data-table no-row-background TaskTabelTd LatestBlockTable"
+            style={{
               color: IsLightMode ? lightText3 : darkText3,
-              borderBottom: `1px solid ${IsLightMode ? "#eee" : "#444"}`,
+              border: `1px none ${IsLightMode ? "#ddd" : "#444"}`,
             }}
-            body={blockNumber}
-          />
+            tableStyle={{
+              minWidth: "35rem",
+              borderCollapse: "collapse",
+            }}
+            emptyMessage={<NoDataComponent />}
+            showHeader={false}
+          >
+            <Column
+              bodyStyle={{
+                textAlign: "right",
+                color: IsLightMode ? lightText3 : darkText3,
+                borderBottom: `1px solid ${IsLightMode ? "#eee" : "#444"}`,
+              }}
+              body={blockNumber}
+            />
 
-          <Column
-            bodyStyle={{
-              textAlign: "right",
-              color: IsLightMode ? lightText3 : darkText3,
-              borderBottom: `1px solid ${IsLightMode ? "#eee" : "#444"}`,
-            }}
-            body={Miner}
-          />
+            <Column
+              bodyStyle={{
+                textAlign: "right",
+                color: IsLightMode ? lightText3 : darkText3,
+                borderBottom: `1px solid ${IsLightMode ? "#eee" : "#444"}`,
+              }}
+              body={Miner}
+            />
 
-          <Column
-            bodyStyle={{
-              textAlign: "left",
-              color: IsLightMode ? lightText3 : darkText3,
-              borderBottom: `1px solid ${IsLightMode ? "#eee" : "#444"}`,
-            }}
-            body={Reward}
-          />
-        </DataTable>
+            <Column
+              bodyStyle={{
+                textAlign: "left",
+                color: IsLightMode ? lightText3 : darkText3,
+                borderBottom: `1px solid ${IsLightMode ? "#eee" : "#444"}`,
+              }}
+              body={Reward}
+            />
+          </DataTable>
+        )}
+
         <div
           className="pt-3 pb-3"
           style={{

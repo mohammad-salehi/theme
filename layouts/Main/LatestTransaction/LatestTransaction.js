@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { boxDarkBackground0, darkText3, lightText3 } from '../../../functions/Colors'
-
+import { serverAddress } from '../../../functions/ServerAddress';
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import NoDataComponent from '../../../components/NoDataComponent/NoDataComponent';
 import { Col, Row } from 'reactstrap';
-import WestIcon from '@mui/icons-material/West';
 import EastIcon from '@mui/icons-material/East';
+import Web3 from "web3";
+import LoadingComponent from '../../../components/LoadingComponent/LoadingComponent';
 
 const LatestTransaction = ({ IsLightMode }) => {
+    const rpcUrl = serverAddress;
+    const web3 = new Web3(rpcUrl);
+
+    const [TXData, SetTXData] = useState([])
+    const [FirstLoading, setFirstLoading] = useState(false);
 
     function timeSince(timestamp) {
         const now = Date.now();
@@ -38,6 +44,46 @@ const LatestTransaction = ({ IsLightMode }) => {
         const years = Math.floor(months / 12);
         return years + ' years ago';
     }
+    function formatString(str) {
+        if (str.length <= 10) {
+          return str; // اگر طول رشته کمتر یا مساوی ۱۰ باشد، نیازی به تغییر نیست
+        }
+        const firstFive = str.substring(0, 6);
+        const lastFive = str.substring(str.length - 6);
+        return `${firstFive}...${lastFive}`;
+      }
+    async function getLatestTransactions() {
+        try {
+          const latestBlock = BigInt(await web3.eth.getBlockNumber());
+          const transactions = [];
+          for (let i = 0n; i < 6n && transactions.length < 6; i++) {
+            const block = await web3.eth.getBlock((latestBlock - i).toString(), true);
+            
+            if (block.transactions.length > 0) {
+              block.transactions.slice(0, 6 - transactions.length).forEach(tx => {
+                console.log(tx)
+                transactions.push({
+                  hash: tx.hash,
+                  from: tx.from,
+                  to: tx.to || 'Contract Creation',
+                  value: Number(web3.utils.fromWei(tx.value, 'ether')).toFixed(3) ,
+                  blockNumber: Number(tx.blockNumber),
+                  timestamp:block.timestamp
+                });
+              });
+            }
+          }
+          setFirstLoading(true)
+          SetTXData(transactions)
+          
+        } catch (error) {
+          console.error("Error fetching transactions:", error);
+          return [];
+        }
+      }
+      useEffect(() => {
+        getLatestTransactions()
+      },[])
 
     const blockNumber = (row) => {
         return (
@@ -60,17 +106,16 @@ const LatestTransaction = ({ IsLightMode }) => {
                             color: '#0784c3',
                             display: 'block',
                             fontSize:'14px'
-                        }}>0xdsakjdh...</a>
+                        }}>{formatString(row.hash)}</a>
                         <small className='m-0 p-0'>
-                            {timeSince(1748168171)}
+                            {timeSince(Number(row.timestamp))}
                         </small>
                     </Col>
                 </Row>
             </div>
         )
     }
-
-    const Miner = (row) => {
+    const TransformData = (row) => {
         return (
             <div className='container-fluid' style={{textAlign:'left'}}>
                 <Row>
@@ -84,7 +129,7 @@ const LatestTransaction = ({ IsLightMode }) => {
                                 color: '#0784c3',
                                 marginLeft: '4px'
                             }}>
-                                kljsdaf...sdklfh
+                                {formatString(row.from)}
                             </a>
                         </p>
                         <p style={{
@@ -96,7 +141,7 @@ const LatestTransaction = ({ IsLightMode }) => {
                                 color: '#0784c3',
                                 marginLeft: '4px'
                             }}>
-                                kljsdaf...sdklfh
+                                {formatString(row.to)}
                             </a>
                         </p>
                     </Col>
@@ -104,10 +149,10 @@ const LatestTransaction = ({ IsLightMode }) => {
             </div>
         )
     }
-
-    const Reward = (row) => {
+    const Value = (row) => {
         return (
             <div className='container-fluid'
+            title='value'
                 style={{
                     borderStyle: 'solid',
                     borderWidth: '1px',
@@ -119,7 +164,7 @@ const LatestTransaction = ({ IsLightMode }) => {
                     fontSize:'14px'
                 }}
             >
-                {(0.235)}<small style={{ marginLeft: '4px' }}>ETH</small>
+                {Number(row.value)}<small style={{ marginLeft: '4px' }}>ETH</small>
             </div>
         )
     }
@@ -149,8 +194,12 @@ const LatestTransaction = ({ IsLightMode }) => {
                     paddingTop: '0px'
                 }}
             >
-                <DataTable
-                    value={[{}, {}, {}, {}, {}, {}]}
+                {
+                    !FirstLoading ? 
+                        <LoadingComponent/>
+                    :
+                    <DataTable
+                    value={TXData}
                     className='custom-data-table no-row-background TaskTabelTd LatestBlockTable'
                     style={{
                         // رنگ متن ردیف‌ها
@@ -181,7 +230,7 @@ const LatestTransaction = ({ IsLightMode }) => {
                             color: IsLightMode ? lightText3 : darkText3,
                             borderBottom: `1px solid ${IsLightMode ? '#eee' : '#444'}`
                         }}
-                        body={Miner}
+                        body={TransformData}
                     />
 
                     <Column
@@ -190,10 +239,12 @@ const LatestTransaction = ({ IsLightMode }) => {
                             color: IsLightMode ? lightText3 : darkText3,
                             borderBottom: `1px solid ${IsLightMode ? '#eee' : '#444'}`
                         }}
-                        body={Reward}
+                        body={Value}
                     />
 
                 </DataTable>
+                }
+
                 <div className='pt-3 pb-3' style={{
                     textAlign:'center',
                     marginBottom:'-12px',

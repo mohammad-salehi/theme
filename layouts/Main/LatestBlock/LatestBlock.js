@@ -60,7 +60,7 @@ const LatestBlock = ({ IsLightMode }) => {
       setBlocks(blocks);
       setFirstLoading(true)
     } catch (error) {
-      console.error( error);
+      console.error(error);
     }
   };
 
@@ -135,7 +135,7 @@ const LatestBlock = ({ IsLightMode }) => {
 
           <Col>
             <a
-              href="/block/123"
+              href={`/block/${row.blockNumber}`}
               style={{
                 textDecoration: "none",
                 color: "#0784c3",
@@ -164,7 +164,7 @@ const LatestBlock = ({ IsLightMode }) => {
             >
               Miner
               <a
-                href="/"
+                href={`/address/${row.blockMiner}`}
                 style={{
                   textDecoration: "none",
                   color: "#0784c3",
@@ -287,15 +287,18 @@ const LatestBlock = ({ IsLightMode }) => {
             cursor: "pointer",
           }}
         >
-          <span
-            style={{
-              fontSize: "15px",
-              color: IsLightMode ? "gray" : null,
-            }}
-          >
-            View All Blocks
-            <EastIcon style={{ marginLeft: "4px", fontSize: "20px" }} />
-          </span>
+          <a href="/block" style={{textDecoration:'none', color:'inherit'}}>
+            <span
+              style={{
+                fontSize: "15px",
+                color: IsLightMode ? "gray" : null,
+              }}
+            >
+              View All Blocks
+              <EastIcon style={{ marginLeft: "4px", fontSize: "20px" }} />
+            </span>
+          </a>
+
         </div>
       </div>
     </div>

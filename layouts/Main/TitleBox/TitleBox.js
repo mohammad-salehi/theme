@@ -1,37 +1,47 @@
 import React, { useState } from 'react'
 import {
-    Card,
     InputGroup,
     Input,
     InputGroupText,
-    Modal,
-    ModalBody,
 } from "reactstrap";
-import {
-    AppBar,
-    Toolbar,
-    Typography,
-    IconButton,
-    TextField,
-    Menu,
-    MenuItem,
-    Box,
-    useMediaQuery,
-    useTheme,
-} from "@mui/material";
+
 import SearchIcon from '@mui/icons-material/Search';
-import { darkHeader, darkText1, darkText2, darkText3, darkText4, boxDarkBackground0, lightText1, lightText2, lightText3, darkBackground3 } from "../../../functions/Colors";
-import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
-import BedtimeIcon from '@mui/icons-material/Bedtime';
+import { darkText3, boxDarkBackground0 } from "../../../functions/Colors";
+import Web3 from 'web3'
+import { serverAddress } from '../../../functions/ServerAddress';
+import toast from "react-hot-toast";
 
 const TitleBox = ({ IsLightMode }) => {
-
+    const web3 = new Web3(serverAddress)
     const [ProfileBox, setProfileBox] = useState(null);
-
+    const [Text, SetText] = useState('')
     const handleProfileBoxClose = () => {
         setMobileMenuAnchor(null);
         setProfileBox(null);
     };
+
+    function detectInputType(input) {
+        if (web3.utils.isAddress(input)) {
+            window.location.assign(`/address/${input}`)
+        }
+        else if (/^0x[0-9a-fA-F]{64}$/.test(input)) {
+            window.location.assign(`/transaction/${input}`)
+        }
+        else if (/^\d+$/.test(input)) {
+            window.location.assign(`/block/${input}`)
+        }
+        else if (/^0x[0-9a-fA-F]+$/.test(input)
+            && !/^0x[0-9a-fA-F]{40}$/.test(input)
+            && !/^0x[0-9a-fA-F]{64}$/.test(input)
+        ) {
+            window.location.assign(`/block/${input}`)
+        } else {
+            toast.error("Your search did not match any records!", {
+                position: "bottom-left",
+            }); 
+        }
+    }
+
     return (
         <div className='mt-4' style={{
             color: IsLightMode ? 'white' : darkText3
@@ -39,8 +49,11 @@ const TitleBox = ({ IsLightMode }) => {
             <h6 style={{ fontSize: '24px' }}>
                 Nickchain explorer
             </h6>
-            <form onSubmit={() => { }}>
-
+            <form onSubmit={e => {
+                e.preventDefault();
+                detectInputType(Text);
+            }}>
+                <button type="submit" style={{ display: 'none' }} />
                 <InputGroup
                     id="MainDashboardInputGroup"
                     className="input-group-merge mb-2 MainDashboardInputGroup"
@@ -74,6 +87,7 @@ const TitleBox = ({ IsLightMode }) => {
                                     height: '36px',
                                     background: '#0784c3'
                                 }}
+                                onClick={() => { detectInputType(Text) }}
                             />
                         </div>
                     </InputGroupText>
@@ -88,6 +102,7 @@ const TitleBox = ({ IsLightMode }) => {
                         id="MainDashboardInputBox"
                         placeholder="search by address / transaction / block number"
                         type="text"
+                        onChange={(e) => { SetText(e.target.value) }}
                     />
 
                 </InputGroup>

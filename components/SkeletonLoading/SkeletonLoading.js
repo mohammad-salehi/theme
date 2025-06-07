@@ -3,7 +3,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Skeleton from "@mui/material/Skeleton";
 export default function SkeletonLoading({IsLightMode}) {
   return (
-    <div style={{ textAlign: "center", marginBottom:'10px' }}>
+    <div style={{ textAlign: "center", marginBottom:'0px' }}>
       <Skeleton width="100%" height="35px" style={{background : IsLightMode ? 'rgb(200,200,200)' :'rgb(70,70,70)'}} />
       <Skeleton width="70%" height="35px"  style={{background : IsLightMode ? 'rgb(200,200,200)' :'rgb(70,70,70)'}} />
       <Skeleton width="90%" height="35px"  style={{background : IsLightMode ? 'rgb(200,200,200)' :'rgb(70,70,70)'}} />

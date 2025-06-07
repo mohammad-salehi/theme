@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router';
 import { Col, Row } from 'reactstrap';
 import { darkText3, darkText4 } from '../../functions/Colors';
@@ -8,11 +8,89 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import InternalTransactions from '../../layouts/Main/Transactions/InternalTransactions/InternalTransactions';
 import TokenTransfers from '../../layouts/Main/Transactions/TokenTransfers/TokenTransfers';
 import CopyrightIcon from '@mui/icons-material/Copyright';
-
+import Web3 from 'web3';
+import { serverAddress } from '../../functions/ServerAddress';
 const block = ({ IsLightMode }) => {
 
   const router = useRouter();
   const { block } = router.query;
+  const web3 = new Web3(serverAddress)
+
+  const [blockInfo, setBlockInfo] = useState({
+    blockHeight: null,
+    status: null,
+    timestamp: null,
+    transactions: 0,
+    internalTransactions: 0,
+    withdrawals: 0,
+    feeRecipient: null,
+    blockReward: null,
+    totalDifficulty: null,
+    size: null,
+    gasUsed: null,
+    gasLimit: null,
+    baseFeePerGas: null,
+    burntFees: null,
+    extraData: null,
+    hash: null,
+    parentHash: null,
+    stateRoot: null,
+    withdrawalsRoot: null,
+    nonce: null,
+  });
+  const getBlockInfo = async (blockHeight) => {
+    try {
+      // دریافت اطلاعات بلاک به همراه تراکنش‌ها
+      const block = await web3.eth.getBlock(blockHeight, true); // true برای داشتن تراکنش‌های داخلی
+      console.log(block)
+      if (!block) {
+        console.error("Block data is null or undefined");
+        return;
+      }
+  
+      // // ذخیره‌سازی اطلاعات در استیت
+      // setBlockInfo({
+      //   blockHeight: blockHeight,
+      //   status: 'Finalized',  // این را برای شبکه‌های مختلف باید بررسی کنید
+      //   timestamp: block.timestamp ? new Date(Number(block.timestamp) * 1000).toISOString() : null,  // بررسی timestamp
+      //   transactions: block.transactions ? block.transactions.length : 0,  // بررسی تعداد تراکنش‌ها
+      //   internalTransactions: block.internalTransactions ? block.internalTransactions.length : 0,  // بررسی تراکنش‌های داخلی
+      //   withdrawals: block.withdrawals ? block.withdrawals.length : 0,  // بررسی برداشت‌ها
+      //   feeRecipient: block.miner || null,  // بررسی fee recipient (مینر)
+      //   blockReward: calculateBlockReward(block),
+      //   totalDifficulty: block.difficulty || '0',  // بررسی سختی
+      //   size: block.size ? `${block.size} bytes` : '0 bytes',  // بررسی اندازه بلاک
+      //   gasUsed: block.gasUsed ? block.gasUsed : 0,  // بررسی میزان گس استفاده‌شده
+      //   gasLimit: block.gasLimit ? block.gasLimit : 0,  // بررسی محدودیت گس
+      //   baseFeePerGas: block.baseFeePerGas ? web3.utils.fromWei(block.baseFeePerGas, 'ether') : '0',  // بررسی Base Fee Per Gas
+      //   burntFees: block.burntFees ? web3.utils.fromWei(block.burntFees, 'ether') : '0',  // بررسی Burnt Fees
+      //   extraData: block.extraData ? web3.utils.hexToUtf8(block.extraData) : 'N/A',  // بررسی Extra Data
+      //   hash: block.hash || null,  // بررسی هش بلاک
+      //   parentHash: block.parentHash || null,  // بررسی هش والد
+      //   stateRoot: block.stateRoot || null,  // بررسی ریشه وضعیت
+      //   withdrawalsRoot: block.withdrawalsRoot || null,  // بررسی ریشه برداشت‌ها
+      //   nonce: block.nonce || '0',  // بررسی نانس بلاک
+      // });
+      // console.log(blockInfo)
+    } catch (error) {
+      console.error("Error fetching block data:", error);
+    }
+  };
+  
+  
+
+  const calculateBlockReward = (block) => {
+    const baseFeePerGasInEther = parseFloat(web3.utils.fromWei(block.baseFeePerGas, 'ether')); // تبدیل baseFeePerGas به اتر
+    const gasUsed = BigInt(block.gasUsed); // تبدیل gasUsed به BigInt برای جلوگیری از اختلاط نوع داده‌ها
+    
+    // محاسبه پاداش بلاک
+    const reward = baseFeePerGasInEther * Number(gasUsed);  // تبدیل gasUsed به عدد صحیح
+    return reward;
+  };
+
+  useEffect(() => {
+    getBlockInfo(block);
+  }, [block]);
 
   const ethLogo = () => {
     return (

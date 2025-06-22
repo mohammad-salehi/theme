@@ -23,14 +23,14 @@ export default function Home({ IsLightMode }) {
   return (
     <div className='container-fluid' style={{ width: '100%', display: 'flex', flexDirection: 'column', padding: '16px 0px', marginTop: '0px' }}>
       <div id="topMainBox" style={{ backgroundImage: IsLightMode ? 'url("./images/lightbackground.png")' : 'url("./images/darkbackground.png")', width: '100%', height: '250px' }} >
-        <div className="ps-2 pe-2" style={{ maxWidth: '1500px', width: '100%', display: 'flex', flexDirection: 'column', padding: '16px 0px', marginTop: '0px', marginLeft: 'auto', marginRight: 'auto' }}>
+        <div className="ps-2 pe-2" style={{ maxWidth: '1280px', width: '100%', display: 'flex', flexDirection: 'column', padding: '16px 0px', marginTop: '0px', marginLeft: 'auto', marginRight: 'auto' }}>
           <TitleBox IsLightMode={IsLightMode} />
         </div>
       </div>
-      <div className="ps-2 pe-2" style={{ maxWidth: '1500px', width: '100%', display: 'flex', flexDirection: 'column', padding: '16px 0px', marginTop: '0px', marginLeft: 'auto', marginRight: 'auto' }}>
+      <div className="ps-2 pe-2" style={{ maxWidth: '1280px', width: '100%', display: 'flex', flexDirection: 'column', padding: '16px 0px', marginTop: '0px', marginLeft: 'auto', marginRight: 'auto' }}>
         <SummaryBox IsLightMode={IsLightMode} />
       </div>
-      <div style={{ maxWidth: '1500px', width: '100%', display: 'flex', flexDirection: 'column', padding: '16px 0px', marginTop: '0px', marginLeft: 'auto', marginRight: 'auto' }}>
+      <div style={{ maxWidth: '1280px', width: '100%', display: 'flex', flexDirection: 'column', padding: '16px 0px', marginTop: '0px', marginLeft: 'auto', marginRight: 'auto' }}>
         <Row className="p-0 m-0">
           
           <Col className="ps-2 pe-2 m-0 mt-2" md="6">

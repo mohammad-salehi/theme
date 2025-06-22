@@ -209,7 +209,7 @@ const address = ({ IsLightMode }) => {
     }
 
     return (
-        <div className="ps-2 pe-2" style={{ maxWidth: '1500px', width: '100%', display: 'flex', flexDirection: 'column', padding: '16px 0px', marginTop: '0px', marginLeft: 'auto', marginRight: 'auto' }}>
+        <div className="ps-2 pe-2" style={{ maxWidth: '1280px', width: '100%', display: 'flex', flexDirection: 'column', padding: '16px 0px', marginTop: '0px', marginLeft: 'auto', marginRight: 'auto' }}>
             <h5>Address: <small style={{ color: 'gray' }}>0x9FC3da866e7DF3a1c57adE1a97c9f00a70f010c8 </small></h5>
 
             <div style={{

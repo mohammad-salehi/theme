@@ -253,7 +253,7 @@ const Header = ({ IsLightMode, setIsLightMode }) => {
           height: '45px',
           background: IsLightMode ? lightHeader : darkHeader
         }}>
-        <StyledToolbar style={{ maxWidth: '1500px', width: '100%', margin: '-10px auto',
+        <StyledToolbar style={{ maxWidth: '1280px', width: '100%', margin: '-10px auto',
           padding:'0px' }} >
           <LogoSection sx={{ marginTop: { xs: "10px", sm: "0px" } }}>
             <img src="/images/bahman_logo.png" style={{ width: "40px", marginLeft:'4px' }} />

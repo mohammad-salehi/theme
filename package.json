@@ -20,6 +20,7 @@
     "@mui/x-date-pickers": "^8.0.0",
     "@rsuite/charts": "^5.2.3",
     "axios": "^1.8.2",
+    "bn.js": "^5.2.2",
     "bootstrap": "^5.3.3",
     "file-saver": "^2.0.5",
     "jalaali-js": "^1.2.8",
